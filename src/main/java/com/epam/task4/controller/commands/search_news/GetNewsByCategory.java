@@ -8,7 +8,7 @@ import com.epam.task4.service.exception.ServiceException;
 
 import java.io.IOException;
 
-public class GetNewsByCategory implements Command{
+public class GetNewsByCategory implements Command {
     @Override
     public String execute(String request) throws IOException, ServiceException {
         String response = null;
@@ -16,16 +16,16 @@ public class GetNewsByCategory implements Command{
         ServiceFactory serviceFactory = ServiceFactory.getInstance();
         NewsService newsService = serviceFactory.getNewsService();
 
-        try{
-                for(News news : newsService.getNewsByCategory(request)){
-                    System.out.println(news);
-                }
-
-            } catch (ServiceException e) {
-                System.out.println(e.getMessage());
+        try {
+            for (News news : newsService.getNewsByCategory(request)) {
+                System.out.println(news);
             }
 
-            response = "News that I could find";
+        } catch (ServiceException e) {
+            System.out.println(e.getMessage());
+        }
+
+        response = "News that I could find";
 
         return response;
     }

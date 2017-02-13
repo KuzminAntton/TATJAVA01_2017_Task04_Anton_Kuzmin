@@ -25,16 +25,16 @@ public class ConsoleCommunication {
     public void consoleCommunication() throws IOException, ControllerException {
         String request = "";
 
-            controller.init();
+        controller.init();
 
-            while(!request.toLowerCase().equals("exit-")) {
+        while (!request.toLowerCase().equals("exit-")) {
 
-                request = reader.readLine();
+            request = reader.readLine();
 
-                Controller controller = Controller.getInstance();
-                controller.executeTask(request);
+            Controller controller = Controller.getInstance();
+            controller.executeTask(request);
 
-            }
+        }
 
 
         controller.destroy();

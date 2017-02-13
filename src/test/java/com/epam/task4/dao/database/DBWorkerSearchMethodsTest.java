@@ -49,7 +49,6 @@ public class DBWorkerSearchMethodsTest {
     }
 
 
-
     @Test
     public void testSearchNewsByTitle() throws Exception {
         Assert.assertEquals(filmNews, dbWorker.searchNewsByTitle("Mirrors"));

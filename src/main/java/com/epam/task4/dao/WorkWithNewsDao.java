@@ -16,16 +16,14 @@ public interface WorkWithNewsDao {
 
     HashSet<News> searchNewsByCategory(String category) throws DAOException;
 
-    HashSet<News> searchNewsByTitleAndCategory(String title,String category) throws DAOException;
+    HashSet<News> searchNewsByTitleAndCategory(String title, String category) throws DAOException;
 
-    HashSet<News> searchNewsByCreatorAndCategory(String creator,String category) throws DAOException;
+    HashSet<News> searchNewsByCreatorAndCategory(String creator, String category) throws DAOException;
 
-    HashSet<News> searchNewsByTitleAndCreator(String title,String creator) throws DAOException;
-
+    HashSet<News> searchNewsByTitleAndCreator(String title, String creator) throws DAOException;
 
 
     News searchConcreteNews(News news) throws DAOException;
-
 
 
     void addItem(String request) throws DAOException;

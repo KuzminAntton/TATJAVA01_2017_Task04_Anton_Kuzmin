@@ -65,9 +65,9 @@ public class DBWorker implements WorkWithNewsDao {
 
             }
 
-        } catch (SQLException | ConnectionPoolException  e) {
+        } catch (SQLException | ConnectionPoolException e) {
             throw new DAOException(e);
-        }finally {
+        } finally {
             try {
                 preparedStatement.close();
             } catch (SQLException e) {
@@ -87,9 +87,9 @@ public class DBWorker implements WorkWithNewsDao {
 
     @Override
     public HashSet<News> searchNewsByTitle(String title) throws DAOException {
-        HashSet<News> news ;
+        HashSet<News> news;
 
-        news = addNewsFromConcreteColumnInHashSet(titleRowName,title);
+        news = addNewsFromConcreteColumnInHashSet(titleRowName, title);
 
         return news;
     }
@@ -98,7 +98,7 @@ public class DBWorker implements WorkWithNewsDao {
     public HashSet<News> searchNewsByCreator(String creator) throws DAOException {
         HashSet<News> news;
 
-        news = addNewsFromConcreteColumnInHashSet(creatorRowName,creator);
+        news = addNewsFromConcreteColumnInHashSet(creatorRowName, creator);
 
         return news;
     }
@@ -107,7 +107,7 @@ public class DBWorker implements WorkWithNewsDao {
     public HashSet<News> searchNewsByCategory(String category) throws DAOException {
         HashSet<News> news;
 
-        news = addNewsFromConcreteColumnInHashSet(categoryRowName,category);
+        news = addNewsFromConcreteColumnInHashSet(categoryRowName, category);
 
         return news;
     }
@@ -116,8 +116,8 @@ public class DBWorker implements WorkWithNewsDao {
     public HashSet<News> searchNewsByTitleAndCategory(String title, String category) throws DAOException {
         HashSet<News> news = new HashSet<>();
 
-        news.addAll(addNewsFromConcreteColumnInHashSet(titleRowName,title));
-        news.addAll(addNewsFromConcreteColumnInHashSet(categoryRowName,category));
+        news.addAll(addNewsFromConcreteColumnInHashSet(titleRowName, title));
+        news.addAll(addNewsFromConcreteColumnInHashSet(categoryRowName, category));
 
         return news;
     }
@@ -126,8 +126,8 @@ public class DBWorker implements WorkWithNewsDao {
     public HashSet<News> searchNewsByCreatorAndCategory(String creator, String category) throws DAOException {
         HashSet<News> news = new HashSet<>();
 
-        news.addAll(addNewsFromConcreteColumnInHashSet(creatorRowName,creator));
-        news.addAll(addNewsFromConcreteColumnInHashSet(categoryRowName,category));
+        news.addAll(addNewsFromConcreteColumnInHashSet(creatorRowName, creator));
+        news.addAll(addNewsFromConcreteColumnInHashSet(categoryRowName, category));
 
         return news;
     }
@@ -136,8 +136,8 @@ public class DBWorker implements WorkWithNewsDao {
     public HashSet<News> searchNewsByTitleAndCreator(String title, String creator) throws DAOException {
         HashSet<News> news = new HashSet<>();
 
-        news.addAll(addNewsFromConcreteColumnInHashSet(titleRowName,title));
-        news.addAll(addNewsFromConcreteColumnInHashSet(creatorRowName,creator));
+        news.addAll(addNewsFromConcreteColumnInHashSet(titleRowName, title));
+        news.addAll(addNewsFromConcreteColumnInHashSet(creatorRowName, creator));
 
         return news;
     }
@@ -161,15 +161,15 @@ public class DBWorker implements WorkWithNewsDao {
                 String title = rs.getString(titleRowName);
                 String creator = rs.getString(creatorRowName);
                 String category = rs.getString(categoryRowName);
-                if(news.equals(new News(title,creator,category))) {
+                if (news.equals(new News(title, creator, category))) {
                     return news;
                 }
 
             }
 
-        } catch (SQLException | ConnectionPoolException  e) {
+        } catch (SQLException | ConnectionPoolException e) {
             throw new DAOException(e);
-        }finally {
+        } finally {
             try {
                 preparedStatement.close();
             } catch (SQLException e) {
@@ -213,7 +213,7 @@ public class DBWorker implements WorkWithNewsDao {
         } catch (SQLException | ConnectionPoolException e) {
 
             throw new DAOException(e);
-        }finally {
+        } finally {
             try {
                 preparedStatement.close();
             } catch (SQLException e) {
@@ -242,7 +242,7 @@ public class DBWorker implements WorkWithNewsDao {
 
             con = pool.takeConnection();
 
-            preparedStatement = (PreparedStatement) con.prepareStatement(sqlSearchByConcreteCriteriaInquiry + columnName + " = " + "'" + criteria+ "'");
+            preparedStatement = (PreparedStatement) con.prepareStatement(sqlSearchByConcreteCriteriaInquiry + columnName + " = " + "'" + criteria + "'");
 
             rs = preparedStatement.executeQuery();
 
@@ -250,14 +250,13 @@ public class DBWorker implements WorkWithNewsDao {
                 String titleFromDB = rs.getString(titleRowName);
                 String creatorFromDB = rs.getString(creatorRowName);
                 String categoryFromDB = rs.getString(categoryRowName);
-                news.add(new News(titleFromDB,creatorFromDB,categoryFromDB));
+                news.add(new News(titleFromDB, creatorFromDB, categoryFromDB));
             }
 
 
-
-        } catch (SQLException | ConnectionPoolException  e) {
+        } catch (SQLException | ConnectionPoolException e) {
             throw new DAOException(e);
-        }finally {
+        } finally {
             try {
                 preparedStatement.close();
             } catch (SQLException e) {
@@ -271,7 +270,7 @@ public class DBWorker implements WorkWithNewsDao {
             }
 
         }
-     return news;
+        return news;
     }
 
 //    private HashSet<News> addNewsFromConcreteColumnInHashSet(String firstColumnName, String secondColumnName, String sirstCriteria , String secondCriteria) throws DAOException {

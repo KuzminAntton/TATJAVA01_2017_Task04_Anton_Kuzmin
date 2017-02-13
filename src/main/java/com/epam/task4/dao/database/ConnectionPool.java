@@ -38,7 +38,7 @@ public final class ConnectionPool {
 
         try {
             this.poolSize = Integer.parseInt(dbResourceManager.getValue(DB_POLL_SIZE));
-        }catch (NumberFormatException e) {
+        } catch (NumberFormatException e) {
             poolSize = 5;
         }
     }
@@ -50,19 +50,20 @@ public final class ConnectionPool {
             Class.forName(driverName);
             givenAwayConQueue = new ArrayBlockingQueue<Connection>(poolSize);
             connectionQueue = new ArrayBlockingQueue<Connection>(poolSize);
-            for(int i = 0; i < poolSize; i++) {
+            for (int i = 0; i < poolSize; i++) {
                 Connection connection = DriverManager.getConnection(url, user, password);
                 PooledConnection pooledConnection = new PooledConnection(connection);
                 connectionQueue.add(pooledConnection);
 
             }
-        }catch (SQLException e) {
-            throw new ConnectionPoolException("SQLException in ConnectionPool",e);
+        } catch (SQLException e) {
+            throw new ConnectionPoolException("SQLException in ConnectionPool", e);
 
         } catch (ClassNotFoundException e) {
             throw new ConnectionPoolException("Can't find database driver class", e);
         }
     }
+
     public void dispose() {
         clearConnectionQueue();
     }
@@ -71,7 +72,7 @@ public final class ConnectionPool {
         try {
             closeConnectionQueue(givenAwayConQueue);
             closeConnectionQueue(connectionQueue);
-        }catch (SQLException e) {
+        } catch (SQLException e) {
             //LOG
         }
     }
@@ -81,8 +82,8 @@ public final class ConnectionPool {
         try {
             connection = connectionQueue.take();
             givenAwayConQueue.add(connection);
-        }catch (InterruptedException e) {
-            throw new ConnectionPoolException("Error connecting to the data source",e);
+        } catch (InterruptedException e) {
+            throw new ConnectionPoolException("Error connecting to the data source", e);
         }
         return connection;
     }
@@ -90,13 +91,13 @@ public final class ConnectionPool {
     public void closeConnection(Connection con, Statement st, ResultSet rs) {
         try {
             con.close();
-        }catch (SQLException e) {
+        } catch (SQLException e) {
             //LOG
         }
 
         try {
             st.close();
-        }catch (SQLException e) {
+        } catch (SQLException e) {
             //LOG
         }
 
@@ -105,11 +106,11 @@ public final class ConnectionPool {
     private void closeConnectionQueue(BlockingQueue<Connection> queue) throws SQLException {
         Connection connection;
 
-        while((connection = queue.poll()) != null) {
-            if(!connection.getAutoCommit()) {
+        while ((connection = queue.poll()) != null) {
+            if (!connection.getAutoCommit()) {
                 connection.commit();
             }
-            ((PooledConnection)connection) .reallyClose();
+            ((PooledConnection) connection).reallyClose();
         }
     }
 
@@ -122,7 +123,7 @@ public final class ConnectionPool {
         }
 
         public void reallyClose() throws SQLException {
-                connection.close();
+            connection.close();
         }
 
 
@@ -168,16 +169,16 @@ public final class ConnectionPool {
 
         @Override
         public void close() throws SQLException {
-            if(connection.isClosed()) {
+            if (connection.isClosed()) {
                 throw new SQLException("Attemtong to close closed connection.");
             }
-            if(connection.isReadOnly()) {
+            if (connection.isReadOnly()) {
                 connection.setReadOnly(false);
             }
-            if(!givenAwayConQueue.remove(this)) {
+            if (!givenAwayConQueue.remove(this)) {
                 throw new SQLException("Error deleting connection from the given away connections pool.");
             }
-            if(!connectionQueue.offer(this)) {
+            if (!connectionQueue.offer(this)) {
                 throw new SQLException("Error allocating connection in the pool.");
             }
         }
@@ -234,17 +235,17 @@ public final class ConnectionPool {
 
         @Override
         public java.sql.Statement createStatement(int resultSetType, int resultSetConcurrency) throws SQLException {
-            return connection.createStatement(resultSetType,resultSetConcurrency);
+            return connection.createStatement(resultSetType, resultSetConcurrency);
         }
 
         @Override
         public PreparedStatement prepareStatement(String sql, int resultSetType, int resultSetConcurrency) throws SQLException {
-            return connection.prepareStatement(sql,resultSetType,resultSetConcurrency);
+            return connection.prepareStatement(sql, resultSetType, resultSetConcurrency);
         }
 
         @Override
         public CallableStatement prepareCall(String sql, int resultSetType, int resultSetConcurrency) throws SQLException {
-            return connection.prepareCall(sql,resultSetType,resultSetConcurrency);
+            return connection.prepareCall(sql, resultSetType, resultSetConcurrency);
         }
 
         @Override
@@ -279,7 +280,7 @@ public final class ConnectionPool {
 
         @Override
         public void rollback(Savepoint savepoint) throws SQLException {
-                connection.rollback();
+            connection.rollback();
         }
 
         @Override
@@ -289,27 +290,27 @@ public final class ConnectionPool {
 
         @Override
         public java.sql.Statement createStatement(int resultSetType, int resultSetConcurrency, int resultSetHoldability) throws SQLException {
-            return connection.createStatement(resultSetType,resultSetConcurrency,resultSetHoldability);
+            return connection.createStatement(resultSetType, resultSetConcurrency, resultSetHoldability);
         }
 
         @Override
         public PreparedStatement prepareStatement(String sql, int resultSetType, int resultSetConcurrency, int resultSetHoldability) throws SQLException {
-            return connection.prepareStatement(sql,resultSetType,resultSetConcurrency,resultSetHoldability);
+            return connection.prepareStatement(sql, resultSetType, resultSetConcurrency, resultSetHoldability);
         }
 
         @Override
         public CallableStatement prepareCall(String sql, int resultSetType, int resultSetConcurrency, int resultSetHoldability) throws SQLException {
-            return connection.prepareCall(sql,resultSetType,resultSetConcurrency,resultSetHoldability);
+            return connection.prepareCall(sql, resultSetType, resultSetConcurrency, resultSetHoldability);
         }
 
         @Override
         public PreparedStatement prepareStatement(String sql, int autoGeneratedKeys) throws SQLException {
-            return connection.prepareStatement(sql,autoGeneratedKeys);
+            return connection.prepareStatement(sql, autoGeneratedKeys);
         }
 
         @Override
         public PreparedStatement prepareStatement(String sql, int[] columnIndexes) throws SQLException {
-            return connection.prepareStatement(sql,columnIndexes);
+            return connection.prepareStatement(sql, columnIndexes);
         }
 
         @Override
@@ -349,7 +350,7 @@ public final class ConnectionPool {
 
         @Override
         public void setClientInfo(Properties properties) throws SQLClientInfoException {
-                connection.setClientInfo(properties);
+            connection.setClientInfo(properties);
         }
 
         @Override
@@ -369,7 +370,7 @@ public final class ConnectionPool {
 
         @Override
         public Struct createStruct(String typeName, Object[] attributes) throws SQLException {
-            return connection.createStruct(typeName,attributes);
+            return connection.createStruct(typeName, attributes);
         }
 
         @Override
@@ -389,7 +390,7 @@ public final class ConnectionPool {
 
         @Override
         public void setNetworkTimeout(Executor executor, int milliseconds) throws SQLException {
-            connection.setNetworkTimeout(executor,milliseconds);
+            connection.setNetworkTimeout(executor, milliseconds);
         }
 
         @Override

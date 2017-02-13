@@ -21,8 +21,8 @@ public class GetNewsByTitleAndCreator implements Command {
         ServiceFactory serviceFactory = ServiceFactory.getInstance();
         NewsService newsService = serviceFactory.getNewsService();
 
-        try{
-            for(News news : newsService.getNewsByTitleAndCreator(title, creator)){
+        try {
+            for (News news : newsService.getNewsByTitleAndCreator(title, creator)) {
                 System.out.println(news);
             }
 

@@ -14,11 +14,11 @@ public interface ServiceNews {
 
     HashSet<News> getNewsByCategory(String category) throws ServiceException;
 
-    HashSet<News> getNewsByTitleAndCategory(String title,String category) throws ServiceException;
+    HashSet<News> getNewsByTitleAndCategory(String title, String category) throws ServiceException;
 
-    HashSet<News> getNewsByCreatorAndCategory(String creator,String category) throws ServiceException;
+    HashSet<News> getNewsByCreatorAndCategory(String creator, String category) throws ServiceException;
 
-    HashSet<News> getNewsByTitleAndCreator(String title,String creator) throws ServiceException;
+    HashSet<News> getNewsByTitleAndCreator(String title, String creator) throws ServiceException;
 
     public HashSet<News> getNewsFreeCriteria(String request) throws ServiceException;
 

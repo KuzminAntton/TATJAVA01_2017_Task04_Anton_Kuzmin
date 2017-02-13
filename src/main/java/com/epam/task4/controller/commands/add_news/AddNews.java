@@ -15,8 +15,8 @@ public class AddNews implements Command {
         ServiceFactory serviceFactory = ServiceFactory.getInstance();
         NewsService newsService = serviceFactory.getNewsService();
 
-        if(NewsValidator.newsValidateBySize(request)) {
-            try{
+        if (NewsValidator.newsValidateBySize(request)) {
+            try {
                 newsService.addNews(request);
             } catch (ServiceException e) {
                 System.out.println(e.getMessage());
@@ -24,7 +24,6 @@ public class AddNews implements Command {
         } else {
             System.out.println(Help.getWrongInput());
         }
-
 
 
         response = "News has been added successful.";

@@ -21,8 +21,8 @@ public class GetNewsByCreatorAndCategory implements Command {
         ServiceFactory serviceFactory = ServiceFactory.getInstance();
         NewsService newsService = serviceFactory.getNewsService();
 
-        try{
-            for(News news : newsService.getNewsByCreatorAndCategory(creator, category)){
+        try {
+            for (News news : newsService.getNewsByCreatorAndCategory(creator, category)) {
                 System.out.println(news);
             }
 

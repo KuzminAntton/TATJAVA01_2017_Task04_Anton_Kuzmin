@@ -60,10 +60,9 @@ public class Controller {
 
             System.out.println(response);
 
-        }catch (ServiceException e1) {
+        } catch (ServiceException e1) {
             log.error(e1);
-        }
-        catch(IOException | StringIndexOutOfBoundsException e2) {
+        } catch (IOException | StringIndexOutOfBoundsException e2) {
             log.info(Help.getWrongInput());
         }
 

@@ -19,13 +19,14 @@ public class NewsService implements ServiceNews {
         try {
             dbWorker.init();
         } catch (DAOException e) {
-            throw  new ServiceException(e);
+            throw new ServiceException(e);
         }
     }
 
     public void destroy() {
         dbWorker.destroy();
     }
+
     /**
      * Take news from controller and give it to DAO layer.
      *
@@ -61,7 +62,7 @@ public class NewsService implements ServiceNews {
     }
 
     @Override
-    public HashSet<News> getNewsByCategory(String category) throws ServiceException{
+    public HashSet<News> getNewsByCategory(String category) throws ServiceException {
         try {
             return dbWorker.searchNewsByCategory(category);
         } catch (DAOException e) {
@@ -70,7 +71,7 @@ public class NewsService implements ServiceNews {
     }
 
     @Override
-    public HashSet<News> getNewsByTitleAndCategory(String title, String category) throws ServiceException{
+    public HashSet<News> getNewsByTitleAndCategory(String title, String category) throws ServiceException {
         try {
             return dbWorker.searchNewsByTitleAndCategory(title, category);
         } catch (DAOException e) {
@@ -88,10 +89,10 @@ public class NewsService implements ServiceNews {
     }
 
     @Override
-    public HashSet<News> getNewsByTitleAndCreator(String title, String creator) throws ServiceException{
+    public HashSet<News> getNewsByTitleAndCreator(String title, String creator) throws ServiceException {
         try {
             return
-                    dbWorker.searchNewsByTitleAndCreator(title , creator);
+                    dbWorker.searchNewsByTitleAndCreator(title, creator);
         } catch (DAOException e) {
             throw new ServiceException(e);
         }
@@ -108,23 +109,23 @@ public class NewsService implements ServiceNews {
     @Override
     public HashSet<News> getNewsFreeCriteria(String request) throws ServiceException {
         try {
-            String [] parametersForTheSearch;
+            String[] parametersForTheSearch;
             parametersForTheSearch = RequestWorker.getSearchParametersInRequest(request);
 
             return dbWorker.searchNewsForFreeCriteria(parametersForTheSearch);
 
         } catch (DAOException e) {
-            throw new ServiceException(e.getMessage(),e);
+            throw new ServiceException(e.getMessage(), e);
         }
     }
 
-    public News getConcreteNews(String request) throws ServiceException{
+    public News getConcreteNews(String request) throws ServiceException {
 
         try {
-            String [] parametersForTheSearch;
+            String[] parametersForTheSearch;
             parametersForTheSearch = request.split(",");
 
-            News news = new News(parametersForTheSearch[0],parametersForTheSearch[1],parametersForTheSearch[2]);
+            News news = new News(parametersForTheSearch[0], parametersForTheSearch[1], parametersForTheSearch[2]);
 
             return dbWorker.searchConcreteNews(news);
 

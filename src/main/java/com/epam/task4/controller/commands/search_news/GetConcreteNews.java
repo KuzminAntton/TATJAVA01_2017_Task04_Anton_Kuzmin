@@ -14,10 +14,10 @@ public class GetConcreteNews implements Command {
         ServiceFactory serviceFactory = ServiceFactory.getInstance();
         NewsService newsService = serviceFactory.getNewsService();
 
-        request = request.replaceAll(" ","");
+        request = request.replaceAll(" ", "");
 
-        if(NewsValidator.newsValidateBySize(request)) {
-            try{
+        if (NewsValidator.newsValidateBySize(request)) {
+            try {
                 System.out.println(newsService.getConcreteNews(request));
             } catch (ServiceException e) {
                 System.out.println(e.getMessage());

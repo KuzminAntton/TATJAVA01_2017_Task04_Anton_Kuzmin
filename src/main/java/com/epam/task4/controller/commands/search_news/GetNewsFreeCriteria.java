@@ -16,15 +16,15 @@ public class GetNewsFreeCriteria implements Command {
         ServiceFactory serviceFactory = ServiceFactory.getInstance();
         NewsService newsService = serviceFactory.getNewsService();
 
-        if(newsService.getNewsFreeCriteria(request).isEmpty()) {
+        if (newsService.getNewsFreeCriteria(request).isEmpty()) {
             System.out.println("News not found, please check your criteria.");
         } else {
-            for(News news : newsService.getNewsFreeCriteria(request)) {
+            for (News news : newsService.getNewsFreeCriteria(request)) {
                 System.out.println(news);
             }
         }
 
         response = "News that I could find";
-        return response ;
+        return response;
     }
 }

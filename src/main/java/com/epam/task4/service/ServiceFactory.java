@@ -6,7 +6,8 @@ public class ServiceFactory {
 
     private final NewsService newsService = new NewsService();
 
-    private ServiceFactory(){}
+    private ServiceFactory() {
+    }
 
     public static ServiceFactory getInstance() {
         return instance;

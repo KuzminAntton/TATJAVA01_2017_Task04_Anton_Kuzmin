@@ -22,8 +22,8 @@ public class GetNewsByTitleAndCategory implements Command {
         NewsService newsService = serviceFactory.getNewsService();
 
 
-        try{
-            for(News news : newsService.getNewsByTitleAndCategory(title, category))
+        try {
+            for (News news : newsService.getNewsByTitleAndCategory(title, category))
                 System.out.println(news);
         } catch (ServiceException e) {
             System.out.println(e.getMessage());

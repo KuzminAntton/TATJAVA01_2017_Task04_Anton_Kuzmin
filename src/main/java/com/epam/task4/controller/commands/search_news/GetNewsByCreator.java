@@ -8,7 +8,7 @@ import com.epam.task4.service.exception.ServiceException;
 
 import java.io.IOException;
 
-public class GetNewsByCreator implements Command{
+public class GetNewsByCreator implements Command {
     @Override
     public String execute(String request) throws IOException, ServiceException {
         String response = null;
@@ -16,8 +16,8 @@ public class GetNewsByCreator implements Command{
         ServiceFactory serviceFactory = ServiceFactory.getInstance();
         NewsService newsService = serviceFactory.getNewsService();
 
-        try{
-            for(News news : newsService.getNewsByCreator(request)){
+        try {
+            for (News news : newsService.getNewsByCreator(request)) {
                 System.out.println(news);
             }
 
