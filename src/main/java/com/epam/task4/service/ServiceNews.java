@@ -20,6 +20,6 @@ public interface ServiceNews {
 
     HashSet<News> getNewsByTitleAndCreator(String title, String creator) throws ServiceException;
 
-    public HashSet<News> getNewsFreeCriteria(String request) throws ServiceException;
+    HashSet<News> getNewsFreeCriteria(String request) throws ServiceException;
 
 }

@@ -40,5 +40,3 @@ public class ConsoleCommunication {
         controller.destroy();
     }
 }
-//get_news_by_creator-anton
-//get_news_by_category-book
