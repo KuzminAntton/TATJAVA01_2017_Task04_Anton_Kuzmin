@@ -44,6 +44,10 @@ public final class ConnectionPool {
     }
 
     public void initPollData() throws ConnectionPoolException {
+<<<<<<< HEAD
+=======
+        Locale.setDefault(Locale.ENGLISH);
+>>>>>>> 928a172da525de4ed9c409d06b8a3334992c4d1b
 
         try {
             Class.forName(driverName);

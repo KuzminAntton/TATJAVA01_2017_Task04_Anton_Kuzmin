@@ -4,8 +4,13 @@ import com.epam.task4.controller.commands.Command;
 import com.epam.task4.controller.commands.CommandProvider;
 import com.epam.task4.controller.exception.ControllerException;
 import com.epam.task4.util.Help;
+<<<<<<< HEAD
 import com.epam.task4.service.impl.NewsImplService;
 import com.epam.task4.service.factory.ServiceFactory;
+=======
+import com.epam.task4.service.NewsService;
+import com.epam.task4.service.ServiceFactory;
+>>>>>>> 928a172da525de4ed9c409d06b8a3334992c4d1b
 import com.epam.task4.service.exception.ServiceException;
 import org.apache.log4j.Logger;
 
@@ -28,6 +33,7 @@ public class Controller {
 
     private final String paramDelimeter = "-";
 
+<<<<<<< HEAD
 
 
     public void init() {
@@ -35,15 +41,28 @@ public class Controller {
             ServiceFactory serviceFactory = ServiceFactory.getInstance();
             NewsImplService newsServiceImpl = serviceFactory.getNewsServiceImpl();
             newsServiceImpl.init();
+=======
+    ServiceFactory serviceFactory = ServiceFactory.getInstance();
+
+    NewsService newsService = serviceFactory.getNewsService();
+
+    public void init() {
+        try {
+            newsService.init();
+>>>>>>> 928a172da525de4ed9c409d06b8a3334992c4d1b
         } catch (ServiceException e) {
             log.error(e);
         }
     }
 
     public void destroy() {
+<<<<<<< HEAD
         ServiceFactory serviceFactory = ServiceFactory.getInstance();
         NewsImplService newsServiceImpl = serviceFactory.getNewsServiceImpl();
         newsServiceImpl.destroy();
+=======
+        newsService.destroy();
+>>>>>>> 928a172da525de4ed9c409d06b8a3334992c4d1b
     }
 
     public void executeTask(String request) throws ControllerException {

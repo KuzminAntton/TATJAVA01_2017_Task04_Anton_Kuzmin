@@ -26,6 +26,10 @@ public interface WorkWithNewsDao {
     News searchConcreteNews(News news) throws DAOException;
 
 
+<<<<<<< HEAD
     void addItem(News news) throws DAOException;
+=======
+    void addItem(String request) throws DAOException;
+>>>>>>> 928a172da525de4ed9c409d06b8a3334992c4d1b
 
 }
