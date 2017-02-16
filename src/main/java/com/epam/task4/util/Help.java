@@ -9,6 +9,11 @@ public final class Help {
             CommandName.GET_NEWS_FREE_CRIT + "\n" +
             CommandName.EXIT + "\n" +
             "Add news request must look like : ADD_NEWS-Name,Creator,Category" + "\n" +
+<<<<<<< HEAD
+=======
+
+            "Add news request must look like : ADD_NEWS-Category,Name,Creator" + "\n" +
+>>>>>>> af063971f98d9a349628d7125e4110bee5d21714
             "Search news request must look like : " + "\n" +
             "get_news_free_crit-tag1...tagN (punctuation is not important)" + "\n" +
             "get_concrete_news-Category,Name,Creator" + "\n" +
