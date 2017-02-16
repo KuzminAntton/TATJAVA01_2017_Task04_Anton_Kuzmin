@@ -2,7 +2,7 @@ package com.epam.task4.controller.commands.impl.news_commands.search_news;
 
 import com.epam.task4.bean.News;
 import com.epam.task4.controller.commands.Command;
-import com.epam.task4.service.impl.NewsImplService;
+import com.epam.task4.service.impl.NewsServiceImpl;
 import com.epam.task4.service.factory.ServiceFactory;
 import com.epam.task4.service.exception.ServiceException;
 
@@ -19,7 +19,7 @@ public class GetNewsByTitleAndCreator implements Command {
         String creator = parameters[1];
 
         ServiceFactory serviceFactory = ServiceFactory.getInstance();
-        NewsImplService newsServiceImpl = serviceFactory.getNewsServiceImpl();
+        NewsServiceImpl newsServiceImpl = serviceFactory.getNewsServiceImpl();
 
         try {
             for (News news : newsServiceImpl.getNewsByTitleAndCreator(title, creator)) {

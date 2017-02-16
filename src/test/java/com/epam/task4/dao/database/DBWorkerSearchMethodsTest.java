@@ -2,11 +2,7 @@ package com.epam.task4.dao.database;
 
 import com.epam.task4.bean.News;
 import com.epam.task4.controller.Controller;
-<<<<<<< HEAD
 import com.epam.task4.dao.factory.DAOFactory;
-=======
-import com.epam.task4.dao.DAOFactory;
->>>>>>> 928a172da525de4ed9c409d06b8a3334992c4d1b
 import org.testng.Assert;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;

@@ -12,11 +12,9 @@ import com.epam.task4.util.RequestWorker;
 
 import java.util.HashSet;
 
-public class NewsImplService implements NewsService {
-
-
-
-    public void init() throws ServiceException {
+public class NewsServiceImpl implements NewsService {
+    
+    public void initResource() throws ServiceException {
         DAOFactory daoFactory = DAOFactory.getInstance();
         DBWorker dbWorker = daoFactory.getDbWorker();
         try {
@@ -26,7 +24,7 @@ public class NewsImplService implements NewsService {
         }
     }
 
-    public void destroy()
+    public void destroyResource()
     {
         DAOFactory daoFactory = DAOFactory.getInstance();
         DBWorker dbWorker = daoFactory.getDbWorker();
@@ -48,7 +46,10 @@ public class NewsImplService implements NewsService {
 
             if(NewsValidator.newsValidateNotNull(news)) {
                 dbWorker.addItem(news);
+            }else {
+                throw new ServiceException("can't add news");
             }
+
 
         } catch (DAOException e) {
             throw new ServiceException(e);
@@ -62,7 +63,13 @@ public class NewsImplService implements NewsService {
             DAOFactory daoFactory = DAOFactory.getInstance();
             DBWorker dbWorker = daoFactory.getDbWorker();
 
-            return dbWorker.searchNewsByTitle(title);
+            if(NewsValidator.newsValidateNotNull(title)) {
+                return dbWorker.searchNewsByTitle(title);
+            }else {
+                throw new ServiceException("can't find news by title");
+            }
+
+
         } catch (DAOException e) {
             throw new ServiceException(e);
         }
@@ -74,7 +81,14 @@ public class NewsImplService implements NewsService {
             DAOFactory daoFactory = DAOFactory.getInstance();
             DBWorker dbWorker = daoFactory.getDbWorker();
 
-            return dbWorker.searchNewsByCreator(creator);
+
+            if(NewsValidator.newsValidateNotNull(creator)) {
+                return dbWorker.searchNewsByCreator(creator);
+            }else {
+                throw new ServiceException("can't find news by creator");
+            }
+
+
         } catch (DAOException e) {
             throw new ServiceException(e);
         }
@@ -86,7 +100,13 @@ public class NewsImplService implements NewsService {
             DAOFactory daoFactory = DAOFactory.getInstance();
             DBWorker dbWorker = daoFactory.getDbWorker();
 
-            return dbWorker.searchNewsByCategory(category);
+            if(NewsValidator.newsValidateNotNull(category)) {
+                return dbWorker.searchNewsByCategory(category);
+            }else {
+                throw new ServiceException("can't find news by category");
+            }
+
+
         } catch (DAOException e) {
             throw new ServiceException(e);
         }
@@ -98,7 +118,14 @@ public class NewsImplService implements NewsService {
             DAOFactory daoFactory = DAOFactory.getInstance();
             DBWorker dbWorker = daoFactory.getDbWorker();
 
-            return dbWorker.searchNewsByTitleAndCategory(title, category);
+
+            if(NewsValidator.newsValidateNotNull(title,category)) {
+                return dbWorker.searchNewsByTitleAndCategory(title, category);
+            }else {
+                throw new ServiceException("can't find news by title and category");
+            }
+
+
         } catch (DAOException e) {
             throw new ServiceException(e);
         }
@@ -110,7 +137,14 @@ public class NewsImplService implements NewsService {
             DAOFactory daoFactory = DAOFactory.getInstance();
             DBWorker dbWorker = daoFactory.getDbWorker();
 
-            return dbWorker.searchNewsByCreatorAndCategory(creator, category);
+
+            if(NewsValidator.newsValidateNotNull(creator,category)) {
+                return dbWorker.searchNewsByCreatorAndCategory(creator, category);
+            }else {
+                throw new ServiceException("can't find news by creator and category");
+            }
+
+
         } catch (DAOException e) {
             throw new ServiceException(e);
         }
@@ -122,7 +156,14 @@ public class NewsImplService implements NewsService {
             DAOFactory daoFactory = DAOFactory.getInstance();
             DBWorker dbWorker = daoFactory.getDbWorker();
 
-            return dbWorker.searchNewsByTitleAndCreator(title, creator);
+
+            if(NewsValidator.newsValidateNotNull(title,creator)) {
+                return dbWorker.searchNewsByTitleAndCreator(title, creator);
+            }else {
+                throw new ServiceException("can't find news by title and category");
+            }
+
+
         } catch (DAOException e) {
             throw new ServiceException(e);
         }
@@ -146,7 +187,16 @@ public class NewsImplService implements NewsService {
             String[] parametersForTheSearch;
             parametersForTheSearch = RequestWorker.getSearchParametersInRequest(request);
 
-            return dbWorker.searchNewsForFreeCriteria(parametersForTheSearch);
+
+            if(NewsValidator.newsValidateNotNull(request)) {
+                return dbWorker.searchNewsForFreeCriteria(parametersForTheSearch);
+            }else {
+                throw new ServiceException("can't find news by free criteria");
+            }
+
+
+
+
 
         } catch (DAOException e) {
             throw new ServiceException(e.getMessage(), e);
@@ -163,9 +213,16 @@ public class NewsImplService implements NewsService {
             String[] parametersForTheSearch;
             parametersForTheSearch = request.split(",");
 
-            News news = new News(parametersForTheSearch[0], parametersForTheSearch[1], parametersForTheSearch[2]);
+            String title = parametersForTheSearch[0];
+            String creator = parametersForTheSearch[1];
+            String category = parametersForTheSearch[2];
 
-            return dbWorker.searchConcreteNews(news);
+            if(NewsValidator.newsValidateNotNull(request)) {
+                News news = new News(title, creator, category);
+                return dbWorker.searchConcreteNews(news);
+            }else {
+                throw new ServiceException("can't find concrete  news ");
+            }
 
 
         } catch (DAOException e) {

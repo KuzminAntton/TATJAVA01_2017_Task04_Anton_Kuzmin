@@ -1,14 +1,8 @@
 package com.epam.task4.controller.commands;
 
-<<<<<<< HEAD
 import com.epam.task4.controller.commands.impl.news_commands.add_news.AddNews;
 import com.epam.task4.controller.commands.impl.news_commands.exit.Exit;
 import com.epam.task4.controller.commands.impl.news_commands.search_news.*;
-=======
-import com.epam.task4.controller.commands.add_news.AddNews;
-import com.epam.task4.controller.commands.exit.Exit;
-import com.epam.task4.controller.commands.search_news.*;
->>>>>>> 928a172da525de4ed9c409d06b8a3334992c4d1b
 import com.epam.task4.util.Help;
 
 import java.util.HashMap;
