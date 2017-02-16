@@ -1,6 +1,6 @@
 package com.epam.task4.service;
 
-<<<<<<< HEAD
+
 import com.epam.task4.bean.News;
 import com.epam.task4.service.exception.ServiceException;
 
@@ -22,7 +22,7 @@ public interface NewsService {
     HashSet<News> getNewsByTitleAndCreator(String title, String creator) throws ServiceException;
 
     HashSet<News> getNewsFreeCriteria(String request) throws ServiceException;
-=======
+
 
 import com.epam.task4.bean.News;
 import com.epam.task4.dao.DAOFactory;
@@ -158,6 +158,5 @@ public class NewsService implements ServiceNews {
         }
 
     }
->>>>>>> 928a172da525de4ed9c409d06b8a3334992c4d1b
 
 }
