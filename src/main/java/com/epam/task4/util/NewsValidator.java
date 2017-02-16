@@ -1,9 +1,5 @@
 package com.epam.task4.util;
 
-<<<<<<< HEAD
-=======
-
->>>>>>> af063971f98d9a349628d7125e4110bee5d21714
 import com.epam.task4.bean.News;
 
 public final class NewsValidator {
@@ -22,10 +18,7 @@ public final class NewsValidator {
         return res;
     }
 
-<<<<<<< HEAD
 
-=======
->>>>>>> af063971f98d9a349628d7125e4110bee5d21714
     public static boolean newsValidateNotNull(String title) {
         boolean res = true;
         if(title.isEmpty()) {

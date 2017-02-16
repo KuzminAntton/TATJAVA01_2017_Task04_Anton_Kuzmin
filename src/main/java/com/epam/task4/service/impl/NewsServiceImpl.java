@@ -13,7 +13,7 @@ import com.epam.task4.util.RequestWorker;
 import java.util.HashSet;
 
 public class NewsServiceImpl implements NewsService {
-    
+
     public void initResource() throws ServiceException {
         DAOFactory daoFactory = DAOFactory.getInstance();
         DBWorker dbWorker = daoFactory.getDbWorker();

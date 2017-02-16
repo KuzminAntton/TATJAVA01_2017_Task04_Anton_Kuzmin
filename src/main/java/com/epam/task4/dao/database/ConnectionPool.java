@@ -4,7 +4,7 @@ import com.epam.task4.dao.exception.ConnectionPoolException;
 import com.mysql.jdbc.Statement;
 
 import java.sql.*;
-import java.util.Locale;
+import org.apache.log4j.Logger;
 import java.util.Map;
 import java.util.Properties;
 import java.util.concurrent.ArrayBlockingQueue;
@@ -15,6 +15,8 @@ public final class ConnectionPool {
 
     private BlockingQueue<Connection> connectionQueue;
     private BlockingQueue<Connection> givenAwayConQueue;
+
+    private static final Logger log = Logger.getRootLogger();
 
     public static final String DB_DRIVER = "db.driver";
     public static final String DB_URL = "db.url";
@@ -72,7 +74,7 @@ public final class ConnectionPool {
             closeConnectionQueue(givenAwayConQueue);
             closeConnectionQueue(connectionQueue);
         } catch (SQLException e) {
-            //LOG
+            log.error(e);
         }
     }
 
@@ -91,13 +93,13 @@ public final class ConnectionPool {
         try {
             con.close();
         } catch (SQLException e) {
-            //LOG
+            log.error(e);
         }
 
         try {
             st.close();
         } catch (SQLException e) {
-            //LOG
+            log.error(e);
         }
 
     }
