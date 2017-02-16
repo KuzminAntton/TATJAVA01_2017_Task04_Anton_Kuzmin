@@ -65,6 +65,7 @@ public class Controller {
         } catch (ServiceException e1) {
             log.error(e1);
         } catch (IOException | StringIndexOutOfBoundsException e2) {
+            log.error(e2);
             log.info(Help.getWrongInput());
         }
 

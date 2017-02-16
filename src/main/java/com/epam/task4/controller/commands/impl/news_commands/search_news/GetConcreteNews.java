@@ -6,8 +6,12 @@ import com.epam.task4.util.NewsValidator;
 import com.epam.task4.service.impl.NewsServiceImpl;
 import com.epam.task4.service.factory.ServiceFactory;
 import com.epam.task4.service.exception.ServiceException;
+import org.apache.log4j.Logger;
 
 public class GetConcreteNews implements Command {
+
+    private static final Logger log = Logger.getLogger(GetConcreteNews.class);
+
     public String execute(String request) {
         String response = null;
 
@@ -20,6 +24,7 @@ public class GetConcreteNews implements Command {
             try {
                 System.out.println(newsServiceImpl.getConcreteNews(request));
             } catch (ServiceException e) {
+                log.error(e);
                 System.out.println(e.getMessage());
             }
         } else {

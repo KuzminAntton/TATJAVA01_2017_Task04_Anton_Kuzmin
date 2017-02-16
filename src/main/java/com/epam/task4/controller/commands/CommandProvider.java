@@ -4,12 +4,15 @@ import com.epam.task4.controller.commands.impl.news_commands.add_news.AddNews;
 import com.epam.task4.controller.commands.impl.news_commands.exit.Exit;
 import com.epam.task4.controller.commands.impl.news_commands.search_news.*;
 import com.epam.task4.util.Help;
+import org.apache.log4j.Logger;
 
 import java.util.HashMap;
 import java.util.Map;
 
 
 public class CommandProvider {
+
+    private static final Logger log = Logger.getLogger(CommandProvider.class);
     private final Map<CommandName, Command> repository = new HashMap<>();
 
     public CommandProvider() {
@@ -39,7 +42,7 @@ public class CommandProvider {
             command = repository.get(commandName);
 
         } catch (IllegalArgumentException | NullPointerException e) {
-
+            log.error(e);
             System.out.println(Help.getWrongInput());
             command = repository.get(CommandName.WRONG_REQUEST);
 

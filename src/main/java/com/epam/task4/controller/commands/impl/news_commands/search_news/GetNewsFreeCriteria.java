@@ -5,9 +5,11 @@ import com.epam.task4.controller.commands.Command;
 import com.epam.task4.service.impl.NewsServiceImpl;
 import com.epam.task4.service.factory.ServiceFactory;
 import com.epam.task4.service.exception.ServiceException;
+import org.apache.log4j.Logger;
 
 
 public class GetNewsFreeCriteria implements Command {
+
     @Override
     public String execute(String request) throws ServiceException {
 

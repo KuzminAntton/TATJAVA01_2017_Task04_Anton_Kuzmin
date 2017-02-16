@@ -1,12 +1,15 @@
 package com.epam.task4.controller.commands.impl.news_commands.add_news;
 
 import com.epam.task4.bean.News;
+import org.apache.log4j.Logger;
 import com.epam.task4.controller.commands.Command;
 import com.epam.task4.service.impl.NewsServiceImpl;
 import com.epam.task4.service.factory.ServiceFactory;
 import com.epam.task4.service.exception.ServiceException;
 
 public class AddNews implements Command {
+    private static final Logger log = Logger.getLogger(AddNews.class);
+
     @Override
     public String execute(String request) {
         String response = null;
@@ -25,6 +28,7 @@ public class AddNews implements Command {
         try{
                 newsServiceImpl.addNews(news);
             } catch (ServiceException e) {
+            log.error(e);
                 System.out.println(e.getMessage());
             }
 
