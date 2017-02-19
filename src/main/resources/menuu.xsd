@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+            targetNamespace="http://www.epam.com/menu"
+            xmlns:mnu="http://www.epam.com/menu">
+
+  <xsd:element name="menu" >
+    <xsd:complexType>
+      <xsd:sequence>
+           <xsd:element name="cold-snacks" type="mnu:ColdSnacks"/>
+           <xsd:element name="hot-snacks" type="mnu:HotSnacks"/>
+           <xsd:element name="breakfast" type="mnu:Breakfast"/>
+      </xsd:sequence>
+    </xsd:complexType>
+
+  </xsd:element>
+  <xsd:complexType name="ColdSnacks">
+    <xsd:sequence>
+      <xsd:element name="element" type="mnu:Element"/>
+    </xsd:sequence>
+    <xsd:attribute name="name" type="xsd:string"/>
+  </xsd:complexType>
+
+  <xsd:complexType name="HotSnacks">
+    <xsd:sequence>
+      <xsd:element name="element" type="mnu:Element"/>
+    </xsd:sequence>
+    <xsd:attribute name="name" type="xsd:string"/>
+  </xsd:complexType>
+
+  <xsd:complexType name="Breakfast">
+    <xsd:sequence>
+     <xsd:element name="element" type="mnu:Element"/>
+    </xsd:sequence>
+    <xsd:attribute name="name" type="xsd:string"/>
+  </xsd:complexType>
+
+  <xsd:complexType name="Element">
+    <xsd:sequence>
+      <xsd:element name="photourl"        type="xsd:string"/>
+      <xsd:element name="name"            type="xsd:string"/>
+      <xsd:element name="discription"     type="xsd:string"/>
+      <xsd:element name="portion"         type="xsd:string" />
+      <xsd:element name="price"           type="xsd:integer" />
+    </xsd:sequence>
+    <xsd:attribute name="id"   type="xsd:string"/>
+  </xsd:complexType>
+
+</xsd:schema>
